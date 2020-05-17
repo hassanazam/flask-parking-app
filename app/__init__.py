@@ -4,8 +4,6 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import logging
 from app.config.config_handler import ConfigHandler
-from app.controllers.authentication import AuthenticationController
-
 
 # get App instance
 app = Flask(__name__)
@@ -20,7 +18,12 @@ ConfigHandler(app)
 db = SQLAlchemy(app)
 
 # Initialize Migrate instance for tracking model changes
-migrate = Migrate(app, db)
+Migrate(app, db)
 
-# Initialize Flask JWT instance
-jwt = JWT(app, AuthenticationController.authenticate, AuthenticationController.get_authenticated_user)
+from app.controllers import authentication
+
+# importing the models to make sure they are known to Flask-Migrate
+from app.models import user, parking_area, parking_slot, booking
+
+# import apis
+from app.apis import user_apis
