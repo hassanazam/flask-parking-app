@@ -1,5 +1,7 @@
 from app import db
+from app.models.role import Role
 from app.models.user import User
+from app.services.utils.constants_utility import ConstantsUtility
 from app.services.utils.security_utility import SecurityUtility
 
 
@@ -10,7 +12,8 @@ class UserUtility(object):
 
         password_hash = SecurityUtility.generate_password_hash(password)
 
-        user = User(email=email, password=password_hash)
+        role = Role.query.filter_by(name=ConstantsUtility.CUSTOMER).first()
+        user = User(email=email, password=password_hash, role=role)
 
         db.session.add(user)
         db.session.commit()
@@ -25,6 +28,19 @@ class UserUtility(object):
 
     @staticmethod
     def get_user_by_id(id):
-        user = User.query.filter_by(id=id)
+        user = User.query.filter_by(id=id).first()
         if user:
-            return user.__dict__
+            return user
+
+    @staticmethod
+    def create_admin(email, password):
+
+        password_hash = SecurityUtility.generate_password_hash(password)
+
+        role = Role.query.filter_by(name=ConstantsUtility.ADMIN).first()
+        user = User(email=email, password=password_hash, role=role)
+
+        db.session.add(user)
+        db.session.commit()
+
+        return user

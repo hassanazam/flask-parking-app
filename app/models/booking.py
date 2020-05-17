@@ -12,3 +12,6 @@ class Booking(db.Model):
     start_time = db.Column(db.Integer, nullable=False)  # epoch format
     end_time = db.Column(db.Integer, nullable=False)    # epoch format
     status = db.Column(db.String(32), nullable=False)   # Could be booked OR cancelled
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+

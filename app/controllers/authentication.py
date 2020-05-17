@@ -2,6 +2,8 @@
 Author: Hassan Azam
 Description : This file contains AuthenticationController. It encapsulates the logic of authenticating a user.
 """
+from flask import g
+
 from app.services.utils.security_utility import SecurityUtility
 from app.services.utils.user_utility import UserUtility
 
@@ -20,7 +22,9 @@ class AuthenticationController(object):
     @staticmethod
     def get_authenticated_user(payload):
         user_id = payload['identity']
-        return UserUtility.get_user_by_id(user_id)
+        user = UserUtility.get_user_by_id(user_id)
+        setattr(g, "authenticated_user", user)
+        return user
 
 
 from app import app

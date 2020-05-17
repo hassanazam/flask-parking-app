@@ -23,7 +23,7 @@ Migrate(app, db)
 from app.controllers import authentication
 
 # importing the models to make sure they are known to Flask-Migrate
-from app.models import user, parking_area, parking_slot, booking
+from app.models import user, parking_area, parking_slot, booking, role
 
 # import apis
-from app.apis import user_apis
+from app.apis import user_apis, parking_area_apis, parking_slot_apis

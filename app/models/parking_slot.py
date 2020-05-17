@@ -8,4 +8,3 @@ class ParkingSlot(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     parking_area_id = db.Column(db.Integer, db.ForeignKey('parking_area.id'), nullable=False)
-    is_available = db.Column(db.Boolean, nullable=False)

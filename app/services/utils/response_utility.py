@@ -32,3 +32,22 @@ class ResponseInfo(object):
 
     CODE_SUCCESS = 0
     MESSAGE_SUCCESS = "Success"
+
+    CODE_BAD_REQUEST = 400
+
+    CODE_INVALID_AREA_ID = 102
+    MESSAGE_INVALID_AREA_ID = "Invalid area id"
+
+    CODE_PARKING_SLOT_ALREADY_BOOKED = 103
+    MESSAGE_PARKING_SLOT_ALREADY_BOOKED = "This slot is already booked for the given time."
+
+    MESSAGE_UNAUTHORIZED_ACCESS = "Unauthorized access"
+    CODE_UNAUTHORIZED_ACCESS = 401
+
+    CODE_INVALID_SLOT_ID = 103
+    MESSAGE_INVALID_SLOT_ID = "Invalid slot id"
+
+    CODE_INVALID_BOOKING_ID = 104
+    MESSAGE_INVALID_BOOKING_ID = "Invalid booking id"
+
+    MESSAGE_BOOKING_CANCELLED = "Your booking has been cancelled."
