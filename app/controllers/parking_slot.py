@@ -1,4 +1,5 @@
 from app.services.utils.booking_utility import BookingUtility
+from app.services.utils.common_utility import CommonUtility
 from app.services.utils.exception_utility import APIException
 from app.services.utils.parking_area_utility import ParkingAreaUtility
 from app.services.utils.parking_slot_utility import ParkingSlotUtility
@@ -36,6 +37,10 @@ class ParkingSlotController(object):
 
         # Format booking object into readable dict
         booking_details = BookingUtility.format_booking_details(booking)
+
+        # Send out an email to user
+        user = CommonUtility.get_authenticated_user()
+        BookingUtility.notify_user_via_email(user, booking_details)
 
         return booking_details
 

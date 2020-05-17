@@ -37,3 +37,20 @@ class ConstantsUtility(object):
 
     ROLE = "role"
     NAME = "name"
+
+    ''' EMAIL CONSTANTS '''
+    EMAIL_FROM = 'From'
+    EMAIL_TO = 'To'
+    EMAIL_MIME_TYPE_PLAIN = 'plain'
+    EMAIL_MIME_TYPE_HTML = 'html'
+
+    MIME_SUBJECT = 'Subject'
+    KWARGS_ADDRESS = 'address'
+    KWARGS_SUBJECT = 'subject'
+    KWARGS_TEXT = 'text'
+    KWARGS_IS_HTML_TEXT = 'is_html_text'
+
+    BOOKING_EMAIL_TEXT = "Your booking has been made successfully.\n Parking Number : {} \n Start Time : {} " \
+                         "\n End Time : {} \n Parking Area : {} \n Parking Slot # {} \n"
+
+    BOOKING_EMAIL_SUBJECT = "Online Parking App"

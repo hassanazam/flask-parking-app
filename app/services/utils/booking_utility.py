@@ -4,6 +4,7 @@ from app import db, app
 from app.models.booking import Booking
 from app.models.parking_area import ParkingArea
 from app.models.parking_slot import ParkingSlot
+from app.services import email_service
 from app.services.utils.common_utility import CommonUtility
 from app.services.utils.constants_utility import ConstantsUtility
 from app.services.utils.exception_utility import APIException
@@ -107,3 +108,14 @@ class BookingUtility(object):
 
         db.session.commit()
         return True
+
+    @staticmethod
+    def notify_user_via_email(user, booking_details):
+
+        text = ConstantsUtility.BOOKING_EMAIL_TEXT.format(booking_details[ConstantsUtility.PARKING_NUMBER],
+                                                          booking_details[ConstantsUtility.START_TIME],
+                                                          booking_details[ConstantsUtility.END_TIME],
+                                                          booking_details[ConstantsUtility.PARKING_AREA],
+                                                          booking_details[ConstantsUtility.PARKING_SLOT])
+
+        email_service.email(user.email, ConstantsUtility.BOOKING_EMAIL_SUBJECT, text)
