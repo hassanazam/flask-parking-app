@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "0e2c78d9-e981-4cf8-bdf4-8ba5c47e3822",
+		"name": "ParkingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"test4@mailinator.com\",\n\t\"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/user/register",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1/auth",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Parking Areas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODk3MTgwODIsImlhdCI6MTU4OTcxNzc4MiwibmJmIjoxNTg5NzE3NzgyLCJpZGVudGl0eSI6Mn0.8d7dW58l8XZtNyl6sQc8QivAgGNkY3G8FkcT35WFYUY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/parking-areas",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"parking-areas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Parking Area",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Parking Slots by Parking Area ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODk3MTk4OTUsImlhdCI6MTU4OTcxOTU5NSwibmJmIjoxNTg5NzE5NTk1LCJpZGVudGl0eSI6MX0.qhUoFFsEYCEy35zOVrmHkXeOa4_YpBjJMMcSBvQ1cbo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:5000/parking-area/1/slots",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"parking-area",
+						"1",
+						"slots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create parking slot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODk3MjA4NzAsImlhdCI6MTU4OTcyMDU3MCwibmJmIjoxNTg5NzIwNTcwLCJpZGVudGl0eSI6MX0.VaFBvOEC42iYec_ouj9TmKNLDlV5YizQyNF-P60wOiQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"parking_area_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/parking-slot",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"parking-slot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book Parking Slot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODk3MjQ2ODksImlhdCI6MTU4OTcyNDM4OSwibmJmIjoxNTg5NzI0Mzg5LCJpZGVudGl0eSI6Mn0.4WFhI_vB4MZ5kDKsdz4aYTZxPZ2xfXdZaoX3K9ucXfo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"parking_slot_id\": 1,\n\t\"start_time\": 1589727482,\n\t\"end_time\": 1589727489\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/parking-slot/book",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"parking-slot",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODk3MjQ2ODksImlhdCI6MTU4OTcyNDM4OSwibmJmIjoxNTg5NzI0Mzg5LCJpZGVudGl0eSI6Mn0.4WFhI_vB4MZ5kDKsdz4aYTZxPZ2xfXdZaoX3K9ucXfo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"booking_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/parking-slot/cancel-booking",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"parking-slot",
+						"cancel-booking"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

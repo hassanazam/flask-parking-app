@@ -1,0 +1,8 @@
+SECRET_KEY = "secret-key"
+SQLALCHEMY_DATABASE_URI = "sqlite:///D:\\HassanWorkSpace\\flask-parking-app\\test.db"
+APP_ENV = "DEVELOPMENT"
+PARKING_NUMBER_MAX_LENGTH = 6
+MAIL_SERVER = "64.233.184.108"
+MAIL_SERVER_PORT = 587
+DEFAULT_SENDER_EMAIL = "hassanazam55@gmail.com"
+DEFAULT_SENDER_EMAIL_PASSWORD = "yourpassword"
