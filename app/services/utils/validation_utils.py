@@ -4,8 +4,8 @@ from cerberus import Validator
 class APIValidator(object):
 
     register_user_validator = {
-        "email": {"type": "string", "required": True},
-        "password": {"type": "string", "required": True}
+        "email": {"type": "string", "required": True, "empty": False},
+        "password": {"type": "string", "required": True, "empty": False}
     }
 
     create_parking_area_validator = {
@@ -30,7 +30,7 @@ class APIValidator(object):
     @staticmethod
     def validate_register_user_api(data):
         vf = Validator(APIValidator.register_user_validator)
-        return vf.validate(data), APIValidator.register_user_validator
+        return vf.validate(data), vf.errors
 
     @staticmethod
     def validate_create_parking_area_api(data):
