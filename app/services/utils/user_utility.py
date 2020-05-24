@@ -44,3 +44,27 @@ class UserUtility(object):
         db.session.commit()
 
         return user
+
+    @staticmethod
+    def format_user_data_for_view(user):
+
+        # TODO: Could add more data in user table, later on (Future)
+        return {
+            ConstantsUtility.USER_ID: user.id,
+            ConstantsUtility.USER_EMAIL: user.email,
+            ConstantsUtility.USER_ROLE: user.role.name
+        }
+
+
+    @staticmethod
+    def get_all_customers():
+        """
+        Customers are the end users of application
+        (Users with the role of customer)
+        :return:
+        """
+
+        role = Role.query.filter_by(name=ConstantsUtility.CUSTOMER).one()
+        users = User.query.filter_by(role_id=role.id)
+
+        return users

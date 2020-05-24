@@ -3,15 +3,6 @@ import os
 import unittest
 from unittest.mock import patch
 
-def setup_test_data():
-
-    from app.services.utils.scripts_util import ScriptUtility
-
-    ScriptUtility.create_roles()
-    ScriptUtility.create_admin("testadmin@mailinator.com", "testadmin")
-
-    ScriptUtility.bootstrap_test_data()
-
 
 class TestRegisterAPI(unittest.TestCase):
 
@@ -29,6 +20,7 @@ class TestRegisterAPI(unittest.TestCase):
             db.create_all()
 
             # Setup test data
+            from app.tests.test_base import setup_test_data
             setup_test_data()
 
             self.test_app_client = app.test_client()

@@ -54,3 +54,9 @@ class ConstantsUtility(object):
                          "\n End Time : {} \n Parking Area : {} \n Parking Slot # {} \n"
 
     BOOKING_EMAIL_SUBJECT = "Online Parking App"
+
+    USER_ID = "user_id"
+    USER_EMAIL = "user_email"
+    USER_ROLE = "user_role"
+
+    BOOKING_STATUS = "booking_status"

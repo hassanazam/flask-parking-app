@@ -26,4 +26,4 @@ from app.controllers import authentication
 from app.models import user, parking_area, parking_slot, booking, role
 
 # import apis
-from app.apis import user_apis, parking_area_apis, parking_slot_apis
+from app.apis import user_apis, parking_area_apis, parking_slot_apis, admin_apis

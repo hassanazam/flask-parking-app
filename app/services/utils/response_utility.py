@@ -55,3 +55,6 @@ class ResponseInfo(object):
     CODE_INVALID_PARKING_DATE_TIME = 105
     MESSAGE_START_TIME_LESS_THAN_CURRENT_TIME = "Parking start time cannot be less than current time!"
     MESSAGE_END_TIME_LESS_THAN_CURRENT_TIME = "Parking end time cannot be less than current time!"
+
+    CODE_ALREADY_CANCELLED = 106
+    MESSAGE_ALREADY_CANCELLED_BOOKING = "This booking has already cancelled."

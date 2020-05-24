@@ -4,6 +4,7 @@ from app import db, app
 from app.models.booking import Booking
 from app.models.parking_area import ParkingArea
 from app.models.parking_slot import ParkingSlot
+from app.models.user import User
 from app.services import email_service
 from app.services.utils.common_utility import CommonUtility
 from app.services.utils.constants_utility import ConstantsUtility
@@ -64,6 +65,8 @@ class BookingUtility(object):
 
         parking_number = BookingUtility.get_parking_number(booking)
 
+        user = User.query.filter_by(id=booking.user_id).one()
+
         start_time = CommonUtility.get_date_from_epoch(booking.start_time, ConstantsUtility.DATE_TIME_FORMAT)
         end_time = CommonUtility.get_date_from_epoch(booking.end_time, ConstantsUtility.DATE_TIME_FORMAT)
 
@@ -73,7 +76,10 @@ class BookingUtility(object):
             ConstantsUtility.PARKING_SLOT: parking_slot.id,
             ConstantsUtility.PARKING_NUMBER: parking_number,
             ConstantsUtility.START_TIME: start_time,
-            ConstantsUtility.END_TIME: end_time
+            ConstantsUtility.END_TIME: end_time,
+            ConstantsUtility.USER_ID: user.id,
+            ConstantsUtility.USER_EMAIL: user.email,
+            ConstantsUtility.BOOKING_STATUS: booking.status
         }
 
     @staticmethod
@@ -103,6 +109,11 @@ class BookingUtility(object):
             raise APIException(status_code=ResponseInfo.CODE_INVALID_BOOKING_ID,
                                message=ResponseInfo.MESSAGE_INVALID_BOOKING_ID)
 
+        # If already cancelled
+        if booking.status == ConstantsUtility.CANCELLED:
+            raise APIException(status_code=ResponseInfo.CODE_ALREADY_CANCELLED,
+                               message=ResponseInfo.MESSAGE_ALREADY_CANCELLED_BOOKING)
+
         # Update status as cancelled
         booking.status = ConstantsUtility.CANCELLED
 
@@ -119,3 +130,10 @@ class BookingUtility(object):
                                                           booking_details[ConstantsUtility.PARKING_SLOT])
 
         email_service.email(user.email, ConstantsUtility.BOOKING_EMAIL_SUBJECT, text)
+
+
+    @staticmethod
+    def read_all_booking_details():
+
+        bookings = Booking.query.all()
+        return bookings

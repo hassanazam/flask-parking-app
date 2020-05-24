@@ -20,7 +20,7 @@ class TestBookingAPI(unittest.TestCase):
             db.create_all()
 
             # Setup test data
-            from app.tests.test_register_api import setup_test_data
+            from app.tests.test_base import setup_test_data
             setup_test_data()
 
             self.test_app_client = app.test_client()
