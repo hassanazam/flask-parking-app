@@ -14,8 +14,6 @@ def setup_test_data():
 
 class TestRegisterAPI(unittest.TestCase):
 
-    app_context = None
-
     def setUp(self):
 
         # Set up env variable APP_CONFIG_PATH
@@ -40,8 +38,8 @@ class TestRegisterAPI(unittest.TestCase):
 
         # Prepare test data for RegisterAPI
         request_data = {
-            "email": "",
-            "password": ""
+            "email": "user1@mailinator.com",
+            "password": "12345"
         }
 
         resp = None
@@ -53,6 +51,27 @@ class TestRegisterAPI(unittest.TestCase):
 
         self.assertEqual("Success", resp_json["message"])
         self.assertEqual(0, resp_json["status_code"])
+
+    def test_register_api_with_already_registered_email(self):
+
+        # Prepare test data for RegisterAPI
+        request_data = {
+            "email": "duplicate@mailinator.com",
+            "password": "12345"
+        }
+
+        resp = None
+        with self.test_app_client as c:
+            r = c.post("/user/register", json=request_data)
+            print(r.data)
+            # Try to register again
+            resp = c.post("/user/register", json=request_data)
+            print(resp.data)
+
+        resp_json = json.loads(resp.data)
+
+        self.assertEqual("This email is already in use.", resp_json["message"])
+        self.assertEqual(101, resp_json["status_code"])
 
     def tearDown(self):
 
