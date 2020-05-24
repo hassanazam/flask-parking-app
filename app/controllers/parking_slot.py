@@ -26,6 +26,9 @@ class ParkingSlotController(object):
         # Validate slot id, if not valid then an exception will be raised
         ParkingSlotUtility.validate_parking_slot_id(parking_slot_id)
 
+        # Check if datetime provided is valid or not
+        ParkingSlotUtility.validate_parking_date_time(start_time, end_time)
+
         # Check if parking slot is available for the requested date time range
         available, booking = ParkingSlotUtility.is_parking_slot_available(parking_slot_id, start_time, end_time)
         if not available:

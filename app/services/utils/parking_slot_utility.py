@@ -60,3 +60,16 @@ class ParkingSlotUtility(object):
         if slot:
             return CommonUtility.convert_to_dict(slot)
 
+    @staticmethod
+    def validate_parking_date_time(start_time, end_time):
+
+        if int(CommonUtility.get_time()/1000) > start_time:
+            raise APIException(ResponseInfo.CODE_INVALID_PARKING_DATE_TIME,
+                               ResponseInfo.MESSAGE_START_TIME_LESS_THAN_CURRENT_TIME)
+
+        if int(CommonUtility.get_time()/1000) > end_time:
+            raise APIException(ResponseInfo.CODE_INVALID_PARKING_DATE_TIME,
+                               ResponseInfo.MESSAGE_END_TIME_LESS_THAN_CURRENT_TIME)
+
+
+

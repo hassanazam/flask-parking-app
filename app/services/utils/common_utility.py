@@ -1,4 +1,5 @@
 import datetime
+import time
 
 from flask import request, g
 
@@ -36,3 +37,12 @@ class CommonUtility(object):
     def get_authenticated_user():
 
         return getattr(g, "authenticated_user")
+
+    @staticmethod
+    def get_time(offset=0):
+        """
+        return serialized datetime current + offset in hours
+        It returns time in epoch format (msecs)
+        """
+        return time.mktime(
+            (datetime.datetime.now() + datetime.timedelta(hours=offset)).timetuple()) * 1000

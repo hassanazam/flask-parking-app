@@ -1,8 +1,7 @@
 import json
 import os
 import unittest
-from test.support import EnvironmentVarGuard
-
+from unittest.mock import patch
 
 def setup_test_data():
 
@@ -11,6 +10,8 @@ def setup_test_data():
     ScriptUtility.create_roles()
     ScriptUtility.create_admin("testadmin@mailinator.com", "testadmin")
 
+    ScriptUtility.bootstrap_test_data()
+
 
 class TestRegisterAPI(unittest.TestCase):
 
@@ -18,10 +19,8 @@ class TestRegisterAPI(unittest.TestCase):
 
         # Set up env variable APP_CONFIG_PATH
         # It contains the path of required external config file
-        self.env = EnvironmentVarGuard()
-        self.env.set("APP_CONFIG_PATH", "D:/HassanWorkSpace/flask-parking-app/parking_app_test_config.py")
 
-        with self.env:
+        with patch.dict('os.environ', {"APP_CONFIG_PATH": "D:/HassanWorkSpace/flask-parking-app/parking_app_test_config.py"}):
             from app import app, db
             self.app = app
             self.db = db
